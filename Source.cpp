@@ -86,6 +86,33 @@ private:
     Cocktail* cocktail;
 };
 
+class Cantitate_Bautura {   //Singleton design pattern
+    static Cantitate_Bautura *cantitate;
+    float litri;
+
+    Cantitate_Bautura()
+    {
+        litri = 0;
+    }
+
+public:
+    static Cantitate_Bautura *get_cantitate()
+    {
+        if (!cantitate)
+            cantitate = new Cantitate_Bautura;
+        return cantitate;
+    }
+    float get_litri()
+    {
+        return this->litri;
+    }
+    void set_litri(float litri)
+    {
+        this->litri = litri;
+    }
+};
+
+Cantitate_Bautura* Cantitate_Bautura::cantitate = 0;
 
 int main()
 {
@@ -97,5 +124,11 @@ int main()
     Alegere* alegere = new Alegere();
     Cocktail* cocktail = alegere->get_Cocktail();
     cocktail->printCocktail();
+
+    Cantitate_Bautura *l = l->get_cantitate();
+    cout << l->get_litri() << " ";
+    l->set_litri(3.5);
+    cout << l->get_litri();
+
     return 0;
 }
